@@ -4,6 +4,7 @@
     :target-keys="targetKeys"
     :render="item => item.title"
     :show-select-all="false"
+    :titles="['1','2']"
     @change="onChange"
   >
     <template #children="{ direction, selectedKeys, onItemSelect }">
@@ -13,9 +14,8 @@
           blockNode
           checkable
           defaultExpandAll
-          v-model="leftCheckedKey"
           :tree-data="leftTreeData"
-          v-model:checked-keys="leftCheckedKey"
+          :checked-keys="leftCheckedKey"
           @check="(_, props) => { handleLeftChecked(_, props, [...selectedKeys, ...targetKeys], onItemSelect) }"
         />
         <a-empty v-else>
@@ -155,7 +155,7 @@ export default defineComponent({
       this.leftHalfCheckedKeys = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys])]
       this.leftCheckedAllKey = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys, ..._])]
       const { eventKey } = node
-      itemSelect(eventKey, true)
+      itemSelect(eventKey, !isChecked(checkedKeys, eventKey))
     },
     // 右侧选择
     handleRightChecked (_: string[], { node, halfCheckedKeys }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
