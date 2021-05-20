@@ -1,10 +1,24 @@
 <template>
   <div class="transfer-wrapper">
     <transfer
+      ref="transferRef"
       :tree-data="treeData"
       :edit-key="editKey"
     />
   </div>
+  <a-space>
+    <a-button
+      type="primary"
+      @click="getValue"
+    >
+      获取值
+    </a-button>
+    <a-button
+      @click="setValue"
+    >
+      设置值
+    </a-button>
+  </a-space>
 </template>
 
 <script lang="ts">
@@ -20,7 +34,18 @@ export default defineComponent({
   data () {
     return {
       treeData: data.treeData,
-      editKey: data.editKey
+      editKey: [] as string[]
+    }
+  },
+  methods: {
+    // 获取值
+    getValue () {
+      const transferRef: any = this.$refs.transferRef
+      if (transferRef) console.log(transferRef.emitKeys)
+    },
+    // 设置值
+    setValue () {
+      this.editKey = data.editKey
     }
   }
 })
@@ -31,6 +56,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   margin-top: 80px;
+  margin-bottom: 24px;
   text-align: left;
 }
 </style>

@@ -4,7 +4,6 @@
     :target-keys="targetKeys"
     :render="item => item.title"
     :show-select-all="false"
-    :titles="['1','2']"
     @change="onChange"
   >
     <template #children="{ direction, selectedKeys, onItemSelect }">
@@ -53,7 +52,7 @@ import {
   isChecked,
   uniqueTree
 } from '@/utils'
-import { TreeDataItem } from '@/types'
+import type { TreeDataItem } from '@/types'
 
 export default defineComponent({
   name: 'OptionsTransfer',
@@ -150,7 +149,10 @@ export default defineComponent({
       this.emitKeys = this.rightExpandedKey
     },
     // 左侧选择
-    handleLeftChecked (_: string[], { node, halfCheckedKeys }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
+    handleLeftChecked (_: string[], {
+      node,
+      halfCheckedKeys
+    }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
       this.leftCheckedKey = _
       this.leftHalfCheckedKeys = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys])]
       this.leftCheckedAllKey = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys, ..._])]
@@ -158,7 +160,10 @@ export default defineComponent({
       itemSelect(eventKey, !isChecked(checkedKeys, eventKey))
     },
     // 右侧选择
-    handleRightChecked (_: string[], { node, halfCheckedKeys }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
+    handleRightChecked (_: string[], {
+      node,
+      halfCheckedKeys
+    }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
       this.rightCheckedKey = _
       this.rightCheckedAllKey = [...halfCheckedKeys, ..._]
       const { eventKey } = node

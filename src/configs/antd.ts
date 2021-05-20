@@ -1,4 +1,4 @@
-import { Button, Empty, Radio, Transfer, Tree } from 'ant-design-vue'
+import { Button, Empty, Radio, Space, Transfer, Tree } from 'ant-design-vue'
 import type { App } from 'vue'
 
 /**
@@ -12,4 +12,5 @@ export function setupAntd (app: App): void {
     .use(Transfer)
     .use(Tree)
     .use(Empty)
+    .use(Space)
 }
