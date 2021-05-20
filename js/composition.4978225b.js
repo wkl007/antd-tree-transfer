@@ -1,0 +1,1 @@
+(self.webpackChunkantd_tree_transfer=self.webpackChunkantd_tree_transfer||[]).push([[862],{983:function(n,e,r){"use strict";r.r(e),r.d(e,{default:function(){return u}});var t=r(252);var a=(0,t.aZ)({name:"Composition"});a.render=function(n,e,r,a,u,i){return(0,t.wg)(),(0,t.j4)("div",null,"composition")};var u=a}}]);
