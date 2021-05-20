@@ -71,22 +71,22 @@ export default defineComponent({
   },
   data () {
     return {
-      targetKeys: [], // 显示在右侧框数据的 key 集合
-      dataSource: [], // 数据源，其中的数据将会被渲染到左边一栏
+      targetKeys: [] as string[], // 显示在右侧框数据的 key 集合
+      dataSource: [] as TreeDataItem[], // 数据源，其中的数据将会被渲染到左边一栏
 
-      leftCheckedKey: [], // 左侧树选中 key 集合
-      leftHalfCheckedKeys: [], // 左侧半选集合
-      leftCheckedAllKey: [], // 左侧树选中的 key 集合，包括半选与全选
-      leftTreeData: [], // 左侧树
+      leftCheckedKey: [] as string[], // 左侧树选中 key 集合
+      leftHalfCheckedKeys: [] as string[], // 左侧半选集合
+      leftCheckedAllKey: [] as string[], // 左侧树选中的 key 集合，包括半选与全选
+      leftTreeData: [] as TreeDataItem[], // 左侧树
 
-      rightCheckedKey: [], // 右侧树选中集合
-      rightCheckedAllKey: [], // 右侧树选中集合，包括半选与全选
-      rightExpandedKey: [], // 右侧展开数集合
-      rightTreeData: [], // 右侧树
+      rightCheckedKey: [] as string[], // 右侧树选中集合
+      rightCheckedAllKey: [] as string[], // 右侧树选中集合，包括半选与全选
+      rightExpandedKey: [] as string[], // 右侧展开数集合
+      rightTreeData: [] as TreeDataItem[], // 右侧树
 
-      emitKeys: [], // 往父级组件传递的数据
+      emitKeys: [] as string[], // 往父级组件传递的数据
 
-      deepList: [] // 深层列表
+      deepList: [] as string[] // 深层列表
     }
   },
   watch: {
@@ -150,7 +150,7 @@ export default defineComponent({
       this.emitKeys = this.rightExpandedKey
     },
     // 左侧选择
-    handleLeftChecked (_, { node, halfCheckedKeys }, checkedKeys, itemSelect) {
+    handleLeftChecked (_: string[], { node, halfCheckedKeys }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
       this.leftCheckedKey = _
       this.leftHalfCheckedKeys = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys])]
       this.leftCheckedAllKey = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys, ..._])]
@@ -158,7 +158,7 @@ export default defineComponent({
       itemSelect(eventKey, true)
     },
     // 右侧选择
-    handleRightChecked (_, { node, halfCheckedKeys }, checkedKeys, itemSelect) {
+    handleRightChecked (_: string[], { node, halfCheckedKeys }: any, checkedKeys: any, itemSelect: (arg0: any, arg1: boolean) => void) {
       this.rightCheckedKey = _
       this.rightCheckedAllKey = [...halfCheckedKeys, ..._]
       const { eventKey } = node
